@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/defaultSort"
+          android:title="@string/by_default"/>
+    <item android:id="@+id/distanceSort"
+          android:title="@string/by_distance" />
+    <item android:id="@+id/suitsSort"
+          android:title="@string/by_suits" />
+</menu>

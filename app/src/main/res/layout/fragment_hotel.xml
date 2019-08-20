@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhiteShell"
+        android:padding="@dimen/margin_s">
+
+    <ProgressBar
+            android:id="@+id/hotelProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+            android:id="@+id/hotelImage"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@color/colorViola"/>
+
+    <TextView
+            android:id="@+id/hotelNoImage"
+            style="@style/TitleText.L"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/hotelImage"
+            app:layout_constraintBottom_toBottomOf="@id/hotelImage"
+            app:layout_constraintStart_toStartOf="@id/hotelImage"
+            app:layout_constraintEnd_toEndOf="@id/hotelImage"
+            android:text="@string/no_image"
+            android:textColor="@color/colorGreyDark"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+
+    <RatingBar
+            android:id="@+id/hotelStars"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@+id/hotelImage"
+            app:layout_constraintTop_toTopOf="@+id/hotelImage"
+            android:layout_margin="@dimen/margin_s"
+            tools:rating="3.5"/>
+
+    <TextView
+            android:id="@+id/hotelName"
+            style="@style/TitleText.L"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_xs"
+            app:layout_constraintTop_toBottomOf="@id/hotelImage"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textAllCaps="true"
+            tools:text="Dream Downtown"/>
+
+    <TextView
+            android:id="@+id/hotelAddress"
+            style="@style/SubtitleText.M"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_xs"
+            app:layout_constraintTop_toBottomOf="@id/hotelName"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="355 West 16th Street"/>
+
+    <TextView
+            android:id="@+id/hotelSuits"
+            style="@style/SubtitleText.M"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_l"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/hotelAddress"
+            tools:text="@string/suits_available"/>
+
+</android.support.constraint.ConstraintLayout>

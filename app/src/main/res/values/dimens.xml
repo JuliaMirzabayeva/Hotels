@@ -1,0 +1,16 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+
+    <dimen name="margin_l">16dp</dimen>
+    <dimen name="margin_m">12dp</dimen>
+    <dimen name="margin_s">8dp</dimen>
+    <dimen name="margin_xs">4dp</dimen>
+
+    <dimen name="separator_size">1dp</dimen>
+
+    <dimen name="button_height_m">40dp</dimen>
+
+    <dimen name="text_size_l">16sp</dimen>
+    <dimen name="text_size_m">14sp</dimen>
+    <dimen name="text_size_s">10sp</dimen>
+</resources>

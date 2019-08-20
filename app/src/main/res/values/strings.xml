@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Hotels</string>
+    <string name="error">Error</string>
+    <string name="by_default">by default</string>
+    <string name="by_distance">by distance</string>
+    <string name="by_suits">by suits</string>
+    <string name="suits_available">Suits available: %s</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="no_image">No image</string>
+</resources>
