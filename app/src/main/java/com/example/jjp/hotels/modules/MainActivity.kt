@@ -10,7 +10,7 @@ import android.support.v4.app.Fragment
 import com.example.jjp.hotels.R
 import kotlinx.android.synthetic.main.activity_main.rootContainer
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), NavigationRouter, ErrorHandler {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         replaceFragment(R.id.fragmentContainer, HotelsListFragment(), HotelsListFragment.TAG, false)
     }
 
-    fun showHotelFragment() {
+    override fun showHotelFragment() {
         replaceFragment(R.id.fragmentContainer, HotelFragment(), HotelFragment.TAG)
     }
 
@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun showError(error: String) {
+    override fun showError(error: String) {
         Snackbar.make(
             rootContainer,
             error,

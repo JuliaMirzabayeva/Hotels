@@ -1,7 +1,6 @@
 package com.example.jjp.hotels.modules.list
 
 import android.os.Bundle
-import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.view.*
 import com.example.jjp.hotels.dagger.App
@@ -12,7 +11,7 @@ import android.view.MenuInflater
 import com.example.jjp.hotels.R
 import com.example.jjp.hotels.models.list.HotelsListProvider
 import com.example.jjp.hotels.modules.BaseFragment
-import com.example.jjp.hotels.modules.MainActivity
+import com.example.jjp.hotels.modules.NavigationRouter
 import java.security.InvalidParameterException
 
 class HotelsListFragment : BaseFragment<HotelsListPresenter>(), HotelListView {
@@ -67,7 +66,7 @@ class HotelsListFragment : BaseFragment<HotelsListPresenter>(), HotelListView {
 
     private fun selectHotel(hotelId: Long) {
         presenter?.setCurrentHotel(hotelId)
-        (activity as MainActivity).showHotelFragment()
+        (activity as NavigationRouter).showHotelFragment()
     }
 
     override fun setProgressVisibility(isVisible: Boolean) {
