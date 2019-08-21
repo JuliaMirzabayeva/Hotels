@@ -1,11 +1,14 @@
 package com.example.jjp.hotels.models.list
 
+import android.annotation.SuppressLint
+import com.example.jjp.hotels.api.ApiService
 import com.example.jjp.hotels.data.HotelPreview
-import com.example.jjp.hotels.models.listeners.ModelLoadingListener
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 class HotelsListProvider
 constructor(
-    private val hotelsListRepository: HotelsListRepository
+    private val api: ApiService
 ) {
     var currentHotelId: Long? = null
 
@@ -17,21 +20,21 @@ constructor(
         fun onHotelsFailed(error: String?)
     }
 
+    @SuppressLint("CheckResult")
     fun loadHotels() {
-        hotelsListRepository.getHotels(object : ModelLoadingListener<List<HotelPreview>> {
-            override fun onModelLoaded(model: List<HotelPreview>) {
-                hotelsPreview = model
-                notifyHotelsLoaded(model)
-            }
+        api.getHotels()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(::onHotelsLoaded, ::onHotelsFailed)
+    }
 
-            override fun onModelError(error: String?) {
-                notifyHotelsFailed(error)
-            }
+    private fun onHotelsLoaded(hotels: List<HotelPreview>) {
+        hotelsPreview = hotels
+        notifyHotelsLoaded(hotels)
+    }
 
-            override fun onModelFailure(error: Throwable?) {
-                notifyHotelsFailed()
-            }
-        })
+    private fun onHotelsFailed(throwable: Throwable) {
+        notifyHotelsFailed(throwable.message)
     }
 
     private fun notifyHotelsLoaded(hotelsPreview: List<HotelPreview>) {

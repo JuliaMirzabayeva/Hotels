@@ -6,9 +6,7 @@ import com.example.jjp.hotels.api.ApiService;
 import com.example.jjp.hotels.models.hotel.HotelLoader;
 import com.example.jjp.hotels.models.hotel.HotelProvider;
 import com.example.jjp.hotels.models.hotel.HotelRepository;
-import com.example.jjp.hotels.models.list.HotelsListLoader;
 import com.example.jjp.hotels.models.list.HotelsListProvider;
-import com.example.jjp.hotels.models.list.HotelsListRepository;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import dagger.Module;
@@ -16,6 +14,7 @@ import dagger.Provides;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import javax.inject.Singleton;
@@ -50,6 +49,7 @@ class AppModule {
                 .baseUrl(API_URL)
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
 
         return retrofit.create(ApiService.class);
@@ -80,19 +80,7 @@ class AppModule {
 
     @Provides
     @Singleton
-    HotelsListLoader provideHotelsListLoader(ApiService apiService) {
-        return new HotelsListLoader(apiService);
-    }
-
-    @Provides
-    @Singleton
-    HotelsListRepository provideHotelsListRepository(HotelsListLoader hotelsListLoader) {
-        return new HotelsListRepository(hotelsListLoader);
-    }
-
-    @Provides
-    @Singleton
-    HotelsListProvider provideHotelsListProvider(HotelsListRepository hotelsListRepository) {
-        return new HotelsListProvider(hotelsListRepository);
+    HotelsListProvider provideHotelsListProvider(ApiService apiService) {
+        return new HotelsListProvider(apiService);
     }
 }
