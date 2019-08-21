@@ -11,6 +11,9 @@ import com.example.jjp.hotels.modules.BaseFragment
 import com.example.jjp.hotels.modules.hotel.vo.HotelVO
 import kotlinx.android.synthetic.main.fragment_hotel.*
 import android.view.Menu
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.style.URLSpan
 
 class HotelFragment : BaseFragment<HotelPresenter>(), HotelView {
 
@@ -68,7 +71,9 @@ class HotelFragment : BaseFragment<HotelPresenter>(), HotelView {
     }
 
     private fun setHotelAddress(address: String) {
-        hotelAddress.text = address
+        val spannableAddress = SpannableString(address)
+        spannableAddress.setSpan(URLSpan(""), 0, spannableAddress.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        hotelAddress.text = spannableAddress
     }
 
     private fun setHotelStars(stars: Float) {
