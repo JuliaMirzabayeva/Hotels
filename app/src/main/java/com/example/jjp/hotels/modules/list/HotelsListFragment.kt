@@ -28,7 +28,7 @@ class HotelsListFragment : BaseFragment<HotelsListPresenter>(), HotelListView {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
-        activity?.menuInflater?.inflate(R.menu.menu_hotels_list_sort, menu)
+        inflater?.inflate(R.menu.menu_hotels_list_sort, menu)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

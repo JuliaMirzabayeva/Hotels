@@ -10,12 +10,13 @@ import com.example.jjp.hotels.dagger.App
 import com.example.jjp.hotels.modules.BaseFragment
 import com.example.jjp.hotels.modules.hotel.vo.HotelVO
 import kotlinx.android.synthetic.main.fragment_hotel.*
+import android.view.Menu
 
 class HotelFragment : BaseFragment<HotelPresenter>(), HotelView {
 
     override fun onCreate(bundle: Bundle?) {
         super.onCreate(bundle)
-        setHasOptionsMenu(false)
+        setHasOptionsMenu(true)
 
         setPresenterFactory {
             App.component().provideHotelPresenter()
@@ -29,6 +30,10 @@ class HotelFragment : BaseFragment<HotelPresenter>(), HotelView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setClickListeners()
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        menu.clear()
     }
 
     private fun setClickListeners() {
