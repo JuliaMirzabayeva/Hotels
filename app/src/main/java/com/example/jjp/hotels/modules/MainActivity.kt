@@ -2,7 +2,6 @@ package com.example.jjp.hotels.modules
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-
 import com.example.jjp.hotels.modules.hotel.HotelFragment
 import com.example.jjp.hotels.modules.list.HotelsListFragment
 import android.support.design.widget.Snackbar
@@ -19,14 +18,14 @@ class MainActivity : AppCompatActivity(), NavigationRouter, ErrorHandler {
     }
 
     private fun showHotelsListFragment() {
-        replaceFragment(R.id.fragmentContainer, HotelsListFragment(), HotelsListFragment.TAG, false)
+        addFragment(R.id.fragmentContainer, HotelsListFragment(), HotelsListFragment.TAG, false)
     }
 
     override fun showHotelFragment() {
-        replaceFragment(R.id.fragmentContainer, HotelFragment(), HotelFragment.TAG)
+        addFragment(R.id.fragmentContainer, HotelFragment(), HotelFragment.TAG)
     }
 
-    private fun replaceFragment(
+    private fun addFragment(
         container: Int,
         fragment: Fragment,
         fragmentTag: String,
@@ -34,7 +33,7 @@ class MainActivity : AppCompatActivity(), NavigationRouter, ErrorHandler {
     ) {
         if (supportFragmentManager.findFragmentByTag(fragmentTag) == null) {
             val fragmentTransaction = supportFragmentManager.beginTransaction()
-            fragmentTransaction.replace(container, fragment)
+            fragmentTransaction.add(container, fragment)
             if (needBackStack) {
                 fragmentTransaction.addToBackStack(fragmentTag)
             }
@@ -48,10 +47,5 @@ class MainActivity : AppCompatActivity(), NavigationRouter, ErrorHandler {
             error,
             Snackbar.LENGTH_SHORT
         ).show()
-    }
-
-    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
-        super.onRestoreInstanceState(savedInstanceState)
-        onCreate(savedInstanceState)
     }
 }
